@@ -1,0 +1,10 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <SqlCodeStyleSettings version="7">
+      <option name="QUERY_ALIGN_ELEMENTS" value="false" />
+      <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
+      <option name="INSERT_MATRIX_ALIGN" value="true" />
+      <option name="FROM_INDENT_JOIN" value="false" />
+    </SqlCodeStyleSettings>
+  </code_scheme>
+</component>
