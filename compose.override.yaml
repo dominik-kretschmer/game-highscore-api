@@ -15,11 +15,11 @@ services:
       - host.docker.internal:host-gateway
     tty: true
   pwa:
-    build:
-      context: ./pwa
-      target: dev
+    image: node:20-alpine
+    working_dir: /srv/app
     volumes:
       - ./pwa:/srv/app
+    command: sh -c "npm install -g pnpm@8.6.0 && pnpm install && pnpm run dev"
     environment:
       API_PLATFORM_CREATE_CLIENT_ENTRYPOINT: http://php
       API_PLATFORM_CREATE_CLIENT_OUTPUT: .
@@ -29,4 +29,3 @@ services:
       - target: 5432
         published: 5432
         protocol: tcp
-

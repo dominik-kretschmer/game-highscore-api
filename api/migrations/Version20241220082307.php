@@ -28,7 +28,7 @@ final class Version20241220082307 extends AbstractMigration
         CREATE TABLE score (
             id INT AUTO_INCREMENT NOT NULL, 
             player_id INT NOT NULL,
-            score VARCHAR(255) NOT NULL, 
+            score INT NOT NULL, 
             FOREIGN KEY (player_id) 
                 REFERENCES player (id),
             PRIMARY KEY(id)

@@ -7,7 +7,10 @@ use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ScoreRepository::class)]
-#[ApiResource(security: "is_granted('ROLE_USER')")]
+#[ApiResource(
+    order: ['score' => 'DESC'],
+    security: "is_granted('ROLE_USER')"
+)]
 class Score
 {
     #[ORM\Id]
@@ -15,8 +18,8 @@ class Score
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $score = null;
+    #[ORM\Column]
+    private ?int $score = null;
 
     #[ORM\ManyToOne(inversedBy: 'scores')]
     #[ORM\JoinColumn(nullable: false)]
@@ -27,15 +30,14 @@ class Score
         return $this->id;
     }
 
-    public function getScore(): ?string
+    public function getScore(): ?int
     {
         return $this->score;
     }
 
-    public function setScore(string $score): static
+    public function setScore(int $score): static
     {
         $this->score = $score;
-
         return $this;
     }
 
@@ -47,7 +49,6 @@ class Score
     public function setPlayer(?Player $player): static
     {
         $this->player = $player;
-
         return $this;
     }
 }

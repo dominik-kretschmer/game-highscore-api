@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PlayerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,6 +20,7 @@ class Player
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[ApiFilter(SearchFilter::class, properties: ['name' => 'exact'])]
     private ?string $name = null;
 
     /**
@@ -69,12 +72,10 @@ class Player
     public function removeScore(Score $score): static
     {
         if ($this->scores->removeElement($score)) {
-            // set the owning side to null (unless already changed)
             if ($score->getPlayerId() === $this) {
                 $score->setPlayerId(null);
             }
         }
-
         return $this;
     }
 }
